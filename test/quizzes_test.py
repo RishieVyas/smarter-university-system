@@ -8,7 +8,14 @@ class QuizzesTest(unittest.TestCase):
     def setUp(self):
         # Run tests on non-production data
         self.ctrl = QuizzesController('quizzes_test.py')
-        
+
+    def test_expose_failure_01(self):
+        """
+        The test case is failing at line 63 
+        in add_quiz of quizzes_controller.py file 
+        """
+        quiz_id = self.ctrl.add_quiz(None, "Text 1", datetime.datetime(2023, 11, 11), datetime.datetime(2023, 11, 13))
+        self.assertIsNone(quiz_id, 'Quiz gets added')    
         
     def test_02_add_quiz_invalidInputFormat_assertLengthOfQuizzesAdded(self):
         """
@@ -33,6 +40,7 @@ class QuizzesTest(unittest.TestCase):
         quizzes = self.ctrl.get_quizzes()
         self.assertEqual(len(quizzes), 2, "Error: There is only one discussion.")
         self.assertEqual(quiz_id, "some quiz id", "Error: The quiz id generated is different")
+   
 
 if __name__ == '__main__':
     unittest.main()
