@@ -40,6 +40,16 @@ class QuizzesTest(unittest.TestCase):
         quizzes = self.ctrl.get_quizzes()
         self.assertEqual(len(quizzes), 2, "Error: There is only one discussion.")
         self.assertEqual(quiz_id, "some quiz id", "Error: The quiz id generated is different")
+
+    def test_expose_add_question_failure(self):
+        """
+        The test case is failing at line 81 
+        in add_question of quizzes_controller.py file 
+        """
+        self.ctrl.clear_data()
+        quiz_id = self.ctrl.add_quiz("Quiz Title", "quiz 1", datetime.datetime(2023, 1, 3), datetime.datetime(2023, 1, 4))
+        question_id = self.ctrl.add_question(quiz_id, datetime.datetime.now(), 44)
+        self.assertIsNotNone(question_id, 'Question added successfully')
    
 
 if __name__ == '__main__':
